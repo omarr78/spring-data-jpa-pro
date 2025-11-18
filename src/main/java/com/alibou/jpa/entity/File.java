@@ -11,7 +11,8 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @SuperBuilder
 @Entity
-@DiscriminatorValue("F")
+@PrimaryKeyJoinColumn(name = "file_id")
+//@DiscriminatorValue("F")
 public class File extends Resource {
     private String type;
 }
