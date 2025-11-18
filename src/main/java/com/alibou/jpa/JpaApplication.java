@@ -1,8 +1,10 @@
 package com.alibou.jpa;
 
 import com.alibou.jpa.entity.Author;
+import com.alibou.jpa.entity.File;
 import com.alibou.jpa.entity.Video;
 import com.alibou.jpa.repository.AuthorRepository;
+import com.alibou.jpa.repository.FileRepository;
 import com.alibou.jpa.repository.VideoRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -21,7 +23,8 @@ public class JpaApplication {
     @Bean
     public CommandLineRunner commandLineRunner(
             AuthorRepository authorRepository,
-            VideoRepository videoRepository
+            VideoRepository videoRepository,
+            FileRepository fileRepository
     ) {
         return args -> {
 //            Author author = Author.builder()
@@ -39,6 +42,14 @@ public class JpaApplication {
                     .length(20)
                     .build();
             videoRepository.save(video);
+
+            File file = File.builder()
+                    .name("abc")
+                    .size(6)
+                    .type("pdf")
+                    .url("https://www.google.com")
+                    .build();
+            fileRepository.save(file);
         };
     }
 }
